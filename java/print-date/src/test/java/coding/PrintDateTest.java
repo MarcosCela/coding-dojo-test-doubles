@@ -16,7 +16,7 @@ public class PrintDateTest {
 
         printDate.printCurrentDate();
 
-        assertTrue(((TestDatePrinter) testDatePrinter).hasPrinted);
+        assertEquals(((TestDatePrinter) testDatePrinter).timesPrinted, 1);
         assertEquals(((TestDatePrinter) testDatePrinter).printedDate, ((TestDateProvider) testDateProvider).dateToReturn);
     }
 
@@ -33,12 +33,12 @@ class TestDateProvider implements DateProvider {
 
 class TestDatePrinter implements DatePrinter {
 
-    public boolean hasPrinted = false;
+    public int timesPrinted = 0;
     public Date printedDate = null;
 
     @Override
     public void printDate(Date currentDate) {
         printedDate = currentDate;
-        hasPrinted = true;
+        timesPrinted += 1;
     }
 }
