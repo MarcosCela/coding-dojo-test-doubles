@@ -6,39 +6,21 @@ import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.*;
 
 public class PrintDateTest {
     @Test
     public void printsExactlyOneTimeWithDateFromProvider() throws Exception {
-        DateProvider testDateProvider = new TestDateProvider();
-        DatePrinter testDatePrinter = new TestDatePrinter();
+        DateProvider testDateProvider = mock(DateProvider.class);
+        DatePrinter testDatePrinter = mock(DatePrinter.class);
+        when(testDateProvider.getDate()).thenReturn(new Date(0));
         PrintDate printDate = new PrintDate(testDateProvider, testDatePrinter);
 
         printDate.printCurrentDate();
 
-        assertEquals(((TestDatePrinter) testDatePrinter).timesPrinted, 1);
-        assertEquals(((TestDatePrinter) testDatePrinter).printedDate, ((TestDateProvider) testDateProvider).dateToReturn);
+        verify(testDatePrinter, times(1)).printDate(new Date(0));
+        verify(testDateProvider, times(1)).getDate();
     }
 
 }
 
-class TestDateProvider implements DateProvider {
-    public final Date dateToReturn = new Date(0);
-
-    @Override
-    public Date getDate() {
-        return dateToReturn;
-    }
-}
-
-class TestDatePrinter implements DatePrinter {
-
-    public int timesPrinted = 0;
-    public Date printedDate = null;
-
-    @Override
-    public void printDate(Date currentDate) {
-        printedDate = currentDate;
-        timesPrinted += 1;
-    }
-}
