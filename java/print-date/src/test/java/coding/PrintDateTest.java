@@ -9,7 +9,7 @@ import static junit.framework.TestCase.assertTrue;
 
 public class PrintDateTest {
     @Test
-    public void printDate() throws Exception {
+    public void printsExactlyOneTimeWithDateFromProvider() throws Exception {
         DateProvider testDateProvider = new TestDateProvider();
         DatePrinter testDatePrinter = new TestDatePrinter();
         PrintDate printDate = new PrintDate(testDateProvider, testDatePrinter);
