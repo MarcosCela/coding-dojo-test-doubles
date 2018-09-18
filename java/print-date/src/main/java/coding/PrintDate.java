@@ -1,12 +1,12 @@
 package coding;
 
 public class PrintDate {
-    private final CurrentDateProvider dateProvider;
-    private final ConsolePrinter datePrinter;
+    private final DateProvider dateProvider;
+    private final DatePrinter datePrinter;
 
 
-    public PrintDate(CurrentDateProvider dateProvider,
-                     ConsolePrinter datePrinter) {
+    public PrintDate(DateProvider dateProvider,
+                     DatePrinter datePrinter) {
         this.dateProvider = dateProvider;
         this.datePrinter = datePrinter;
     }
