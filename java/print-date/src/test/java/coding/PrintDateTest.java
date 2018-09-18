@@ -17,13 +17,16 @@ public class PrintDateTest {
         printDate.printCurrentDate();
 
         assertTrue(((TestDatePrinter) testDatePrinter).hasPrinted);
+        // Careful with this!!!!
+        assertEquals(testDateProvider.getDate(), new Date(0));
 
     }
 
 }
 
 class TestDateProvider implements DateProvider {
-    public  final Date dateToReturn = new Date(0);
+    public final Date dateToReturn = new Date(0);
+
     @Override
     public Date getDate() {
         return dateToReturn;
