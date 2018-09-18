@@ -12,13 +12,13 @@ public class PrintDateTest {
     @Test
     public void printsExactlyOneTimeWithDateFromProvider() throws Exception {
         DateProvider testDateProvider = mock(DateProvider.class);
-        DatePrinter testDatePrinter = mock(DatePrinter.class);
+        DatePrinter printerSpy = spy(new ConsolePrinter());
         when(testDateProvider.getDate()).thenReturn(new Date(0));
-        PrintDate printDate = new PrintDate(testDateProvider, testDatePrinter);
+        PrintDate printDate = new PrintDate(testDateProvider, printerSpy);
 
         printDate.printCurrentDate();
 
-        verify(testDatePrinter, times(1)).printDate(new Date(0));
+        verify(printerSpy, times(1)).printDate(new Date(0));
         verify(testDateProvider, times(1)).getDate();
     }
 
