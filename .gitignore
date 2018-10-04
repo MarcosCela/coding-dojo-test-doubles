@@ -1,2 +1,7 @@
 .idea
 java/print-date/target/
+target
+.classpath
+*.project
+*.settings
+*.iml
