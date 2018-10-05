@@ -1,10 +1,23 @@
 import unittest
+from datetime import datetime
+from unittest.mock import MagicMock
 
 from src.dojo import PrintDate
+from src.utils import Printer, CurrentDateProvider
+
+TEST_DATE = datetime.now()
 
 
 class PrintDateTest(unittest.TestCase):
 
     def test_current_date_works(self):
-        PrintDate().print_current_date()
-        self.assertIsNone(None, "TDD is not that hard, i got all my tests on green and 100% coverage!")
+        # Setup
+        printer = MagicMock(spec=Printer)
+        date_provider = CurrentDateProvider()
+        date_provider.current_date = MagicMock(return_value=TEST_DATE)
+
+        # Test
+        PrintDate(printer, date_provider).print_current_date()
+
+        # Assert
+        printer.print.assert_called_once_with(TEST_DATE)
