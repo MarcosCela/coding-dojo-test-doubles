@@ -21,4 +21,5 @@ class PrintDateTest(unittest.TestCase):
 
         # Assert
         printer.print.assert_called_once_with(TEST_DATE)
+        date_provider.current_date.assert_called_once()
 
