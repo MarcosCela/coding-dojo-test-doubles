@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 from src.dojo import PrintDate
 from src.utils import Printer, CurrentDateProvider
 
-TEST_DATE = datetime.now()
+TEST_DATE = datetime.utcfromtimestamp(0)
 
 
 class PrintDateTest(unittest.TestCase):
@@ -21,3 +21,4 @@ class PrintDateTest(unittest.TestCase):
 
         # Assert
         printer.print.assert_called_once_with(TEST_DATE)
+
