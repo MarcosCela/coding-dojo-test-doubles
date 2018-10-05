@@ -1,12 +1,15 @@
 from datetime import datetime
 
+from src.utils import Printer, CurrentDateProvider
+
 
 class PrintDate:
-    def __init__(self):
-        pass
+    def __init__(self, printer: Printer=Printer(), date_provider: CurrentDateProvider = CurrentDateProvider()):
+        self.printer = printer
+        self.current_date_provider = date_provider
 
     def print_current_date(self):
-        print(datetime.now())
+        self.printer.print(self.current_date_provider.current_date())
 
 
 if __name__ == '__main__':
